@@ -10,11 +10,14 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: validate
+- stage: ssh
   jobs:
-  - job: validate
+  - job: ssh
     continueOnError: false
     steps:
-    - task: TerraformInstaller@0
+    - task: SSH@0
       inputs:
-        terraformVersion: '0.12.3'
+        sshEndpoint: 'ssh-testvm'
+        runOptions: 'commands'
+        commands: 'touch hellowork.txt'
+        readyTimeout: '20000'
