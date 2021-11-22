@@ -18,6 +18,8 @@ stages:
     - task: SSH@0
       inputs:
         sshEndpoint: 'ssh-testvm'
-        runOptions: 'commands'
-        commands: 'touch hellowork.txt'
+        runOptions: 'commands' 
+        commands: |
+          echo "hello world"
+          sudo ansible-playbook test-playbook.yml
         readyTimeout: '20000'
